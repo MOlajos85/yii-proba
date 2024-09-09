@@ -28,7 +28,8 @@ class Customers extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
+    // Mezőkre vonatkozó megkötések
+     public function rules()
     {
         return [
             [['customer_name', 'zip_code', 'city', 'province'], 'required'],
@@ -40,7 +41,8 @@ class Customers extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    // attributeLabels: az adott nézetben az adott oszlopnév beállítása (pl. vásárló neve Customer Name lesz)
+     public function attributeLabels()
     {
         return [
             'customer_id' => 'Customer ID',
@@ -59,8 +61,8 @@ class Customers extends \yii\db\ActiveRecord
         return $this->hasMany(Orders::className(), ['customers_customer_id' => 'customer_id']);
     }
 
-    public function getBooks() {
-        return $this->hasMany(Books::className(), ['customer_id' => 'books_book_id'])
-            ->viaTable('orders', ['customers_customer_id' => 'customer_id']);
-    }
+    // public function getBooks() {
+    //     return $this->hasMany(Books::className(), ['customer_id' => 'books_book_id'])
+    //         ->viaTable('orders', ['customers_customer_id' => 'customer_id']);
+    // }
 }

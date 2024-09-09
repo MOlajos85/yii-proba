@@ -11,7 +11,16 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'gridview' => [
+            'class' => 'kartik\grid\Module',
+            // other module settings
+        ],
+        'exportMenu' => [
+            'class' => 'kartik\export\ExportMenu',
+            // other module settings
+        ],
+    ],
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',

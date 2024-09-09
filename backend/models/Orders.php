@@ -27,7 +27,8 @@ class Orders extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
+    // Mezőkre vonatkozó megkötések
+     public function rules()
     {
         return [
             [['customers_customer_id', 'books_book_id'], 'required'],
@@ -38,7 +39,8 @@ class Orders extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    // Oszlopok fejléce
+     public function attributeLabels()
     {
         return [
             'order_id' => 'Order ID',

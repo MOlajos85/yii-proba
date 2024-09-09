@@ -15,9 +15,11 @@ class OrdersSearch extends Orders
     /**
      * @inheritdoc
      */
-    public function rules()
+    // Mezőkre vonatkozó megkötések
+     public function rules()
     {
         return [
+            // order_id-t integerként kezeli, a másik 2-t stringként
             [['order_id'], 'integer'],
             [['customers_customer_id', 'books_book_id'], 'safe']
         ];
@@ -39,6 +41,8 @@ class OrdersSearch extends Orders
      *
      * @return ActiveDataProvider
      */
+    
+    // Keresés a táblázat rekordaiban
     public function search($params)
     {
         $query = Orders::find();
@@ -47,22 +51,43 @@ class OrdersSearch extends Orders
             'query' => $query,
         ]);
 
+        // RENDEZÉS VÁSÁRLÓ NEVE ÉS KÖNYVCÍM ALAPJÁN
+
+        // Customers és Books tábla csatolása, mert a szükséges mezők (customer_name, book_title) ezekben vannak
+        $query->joinWith('customersCustomer');
+        $query->joinWith('booksBook');
+
+        // A hivatkozott mezőket táblanév.mező_neve alakban adjuk meg
+        $dataProvider->setSort([
+            'attributes' => [
+                'customers_customer_id'=>[
+                    'asc'=>['customers.customer_name'=>SORT_ASC],
+                    'desc'=>['customers.customer_name'=>SORT_DESC],
+                ],
+                'books_book_id'=>[
+                    'asc'=>['books.book_title'=>SORT_ASC],
+                    'desc'=>['books.book_title'=>SORT_DESC],
+                ],
+            ]
+        ]);
+
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
-        $query->joinWith('customersCustomer');
-        $query->joinWith('booksBook');
+        // KERESÉS OSZLOPNEVEK ALAPJÁN
 
+        // Integer típus esetén, ahol pontos egyezés kell
         $query->andFilterWhere([
             'order_id' => $this->order_id,
             // 'customers_customer_id' => $this->customers_customer_id,
             // 'books_book_id' => $this->books_book_id,
         ]);
 
+        // Stringeknél ('like')
+        // A megadott id (pl. books_book_id) alapján keressen egyezést a csatolt táblában (pl. könyv címe alapján)
         $query->andFilterWhere(['like','customers.customer_name', $this->customers_customer_id])
-                ->andFilterWhere(['like','books.book_title', $this->books_book_id])
-                ->andFilterWhere(['like','books.book_author', $this->books_book_id]);
+                ->andFilterWhere(['like','books.book_title', $this->books_book_id]);
 
         return $dataProvider;
     }
