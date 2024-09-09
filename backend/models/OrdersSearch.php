@@ -18,7 +18,8 @@ class OrdersSearch extends Orders
     public function rules()
     {
         return [
-            [['order_id', 'customers_customer_id', 'books_book_id'], 'integer'],
+            [['order_id'], 'integer'],
+            [['customers_customer_id', 'books_book_id'], 'safe']
         ];
     }
 
@@ -50,11 +51,18 @@ class OrdersSearch extends Orders
             return $dataProvider;
         }
 
+        $query->joinWith('customersCustomer');
+        $query->joinWith('booksBook');
+
         $query->andFilterWhere([
             'order_id' => $this->order_id,
-            'customers_customer_id' => $this->customers_customer_id,
-            'books_book_id' => $this->books_book_id,
+            // 'customers_customer_id' => $this->customers_customer_id,
+            // 'books_book_id' => $this->books_book_id,
         ]);
+
+        $query->andFilterWhere(['like','customers.customer_name', $this->customers_customer_id])
+                ->andFilterWhere(['like','books.book_title', $this->books_book_id])
+                ->andFilterWhere(['like','books.book_author', $this->books_book_id]);
 
         return $dataProvider;
     }

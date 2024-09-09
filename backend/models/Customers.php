@@ -44,7 +44,7 @@ class Customers extends \yii\db\ActiveRecord
     {
         return [
             'customer_id' => 'Customer ID',
-            'customer_name' => 'Name',
+            'customer_name' => 'Customer Name',
             'zip_code' => 'Zip Code',
             'city' => 'City',
             'province' => 'Province',
@@ -57,5 +57,10 @@ class Customers extends \yii\db\ActiveRecord
     public function getOrders()
     {
         return $this->hasMany(Orders::className(), ['customers_customer_id' => 'customer_id']);
+    }
+
+    public function getBooks() {
+        return $this->hasMany(Books::className(), ['customer_id' => 'books_book_id'])
+            ->viaTable('orders', ['customers_customer_id' => 'customer_id']);
     }
 }

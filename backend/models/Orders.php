@@ -42,8 +42,8 @@ class Orders extends \yii\db\ActiveRecord
     {
         return [
             'order_id' => 'Order ID',
-            'customers_customer_id' => 'Customer ID',
-            'books_book_id' => 'Book ID',
+            'customers_customer_id' => 'Customer Name',
+            'books_book_id' => 'Book',
         ];
     }
 

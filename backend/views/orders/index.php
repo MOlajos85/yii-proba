@@ -26,8 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'order_id',
-            'customers_customer_id',
-            'books_book_id',
+            [
+                'attribute' => 'customers_customer_id',
+                'value' => 'customersCustomer.customer_name'
+            ],
+            // 'customersCustomer.customer_name',
+            // 'booksBook.book_author',
+            // 'booksBook.book_title',
+            [
+                'attribute' => 'books_book_id',
+                'value' => 'booksBook.book_title'
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
