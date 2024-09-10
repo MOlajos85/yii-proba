@@ -10,7 +10,11 @@ use yii\widgets\ActiveForm;
 
 <div class="customers-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => [
+            'id' => 'create-customer-form'
+        ]
+    ]); ?>
 
     <?= $form->field($model, 'customer_name')->textInput(['maxlength' => 100]) ?>
 

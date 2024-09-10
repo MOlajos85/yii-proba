@@ -2,8 +2,10 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use kartik\select2\Select2;
 use kartik\export\ExportMenu;
+use yii\helpers\Url;
+use yii\widgets\Pjax; // Ajax küldés
+use yii\bootstrap\Modal; // Felugró ablak az űrlap kitöltéséhez
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\OrdersSearch */
@@ -23,8 +25,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Orders', ['create'], ['class' => 'btn btn-success']) ?>
+        <!-- <?= Html::button('Create Orders', ['value' =>Url::to('index.php?r=orders/create'), 'class' => 'btn btn-success', 'id' => 'ordersModalButton']) ?> -->
+        <?= Html::button('Create Orders', ['value' =>Url::to('index.php?r=orders/create'), 'title' => 'Create Order', 'class' => 'showModalButton btn btn-success']) ?>
     </p>
+
+    <!-- <?php
+        // Felugró űrlap ablak
+        Modal::begin([
+            'header' => '<h4>Orders</h4>',
+            'id' => 'ordersModal',
+            'size' => 'modal-lg',
+        ]);
+
+        echo "<div id='ordersModalContent'></div>";
+
+        Modal::end();
+    ?> -->
 
     <!-- ExportMenu - MEGNÉZNI!!! -->
     <?php 
@@ -42,6 +58,9 @@ $this->params['breadcrumbs'][] = $this->title;
     
     ?>
 
+    <!-- Keresés Ajax-szel, az oldal újratöltése nélkül -->
+     <!-- Pjax widget, kezdés: begin(), zárás: end() -->
+    <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -64,5 +83,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+    <?php Pjax::end(); ?>
 </div>

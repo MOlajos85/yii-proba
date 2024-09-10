@@ -13,7 +13,11 @@ use backend\models\Books;
 
 <div class="orders-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => [
+            'id' => 'create-order-form'
+        ]
+    ]); ?>
 
     <?= $form->field($model, 'customers_customer_id')->dropDownList(
         ArrayHelper::map(Customers::find()->all(), 'customer_id', 'customer_name'),

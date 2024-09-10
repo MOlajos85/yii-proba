@@ -10,7 +10,11 @@ use yii\widgets\ActiveForm;
 
 <div class="books-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin([
+        'options' => [
+            'id' => 'create-book-form'
+        ]
+    ]); ?>
 
     <?= $form->field($model, 'book_author')->textInput(['maxlength' => 100]) ?>
 
