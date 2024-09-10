@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Books */
 
-$this->title = $model->book_id;
+$this->title = $model->book_author.' - '. $model->book_title;
 $this->params['breadcrumbs'][] = ['label' => 'Books', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        
     </p>
 
     <?= DetailView::widget([
@@ -31,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'book_id',
             'book_author',
             'book_title',
+            'book_img',
             'book_price',
         ],
     ]) ?>

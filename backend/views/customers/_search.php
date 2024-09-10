@@ -15,7 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'customer_id') ?>
+    <?= $form->field($model, 'globalSearch') ?>
+
+    <!-- <?= $form->field($model, 'customer_id') ?>
 
     <?= $form->field($model, 'customer_name') ?>
 
@@ -23,7 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'city') ?>
 
-    <?= $form->field($model, 'province') ?>
+    <?= $form->field($model, 'province') ?> -->
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

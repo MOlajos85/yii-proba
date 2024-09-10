@@ -63,12 +63,12 @@ AppAsset::register($this);
             <?php
             // Modal a felugró ablakhoz
                 Modal::begin([
-                    // 'headerOptions' => ['id' => 'modalHeader'],
+                    'headerOptions' => ['id' => 'modalHeader'],
                     'id' => 'modal',
                     'size' => 'modal-lg',
                     //keeps from closing modal with esc key or by clicking out of the modal.
                     // user must click cancel or X to close
-                    'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+                    // 'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
                 ]);
                 echo "<div id='modalContent'></div>";
                 Modal::end();

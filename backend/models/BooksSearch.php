@@ -16,11 +16,13 @@ class BooksSearch extends Books
      * @inheritdoc
      */
     public $customer_name;
+    public $globalSearch;
     public function rules()
     {
         return [
             [['book_id', 'book_price'], 'integer'],
-            [['book_author', 'customer_name', 'book_title'], 'safe'],
+            [['book_author', 'globalSearch', 'book_title'], 'safe'],
+            // [['book_author', 'globalSearch', 'customer_name', 'book_title'], 'safe'],
         ];
     }
 
@@ -53,14 +55,18 @@ class BooksSearch extends Books
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'book_id' => $this->book_id,
-            'book_price' => $this->book_price,
-        ]);
+        // $query->andFilterWhere([
+        //     'book_id' => $this->book_id,
+        //     'book_price' => $this->book_price,
+        // ]);
 
-        $query->andFilterWhere(['like', 'book_author', $this->book_author])
-            ->andFilterWhere(['like', 'book_title', $this->book_title])
-            ->andFilterWhere(['like', 'customer_name', $this->customer_name]);
+        // $query->andFilterWhere(['like', 'book_author', $this->book_author])
+        //     ->andFilterWhere(['like', 'book_title', $this->book_title])
+        //     ->andFilterWhere(['like', 'customer_name', $this->customer_name]);
+        
+        $query->orFilterWhere(['like', 'book_author', $this->globalSearch])
+            ->orFilterWhere(['like', 'book_title', $this->globalSearch])
+            ->orFilterWhere(['like', 'book_price', $this->globalSearch]);
 
         return $dataProvider;
     }

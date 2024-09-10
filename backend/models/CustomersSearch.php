@@ -15,11 +15,12 @@ class CustomersSearch extends Customers
     /**
      * @inheritdoc
      */
+    public $globalSearch;
     public function rules()
     {
         return [
             [['customer_id'], 'integer'],
-            [['customer_name', 'zip_code', 'city', 'province'], 'safe'],
+            [['customer_name', 'globalSearch', 'zip_code', 'city', 'province'], 'safe'],
         ];
     }
 
@@ -51,14 +52,19 @@ class CustomersSearch extends Customers
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'customer_id' => $this->customer_id,
-        ]);
+        // $query->andFilterWhere([
+        //     'customer_id' => $this->customer_id,
+        // ]);
 
-        $query->andFilterWhere(['like', 'customer_name', $this->customer_name])
-            ->andFilterWhere(['like', 'zip_code', $this->zip_code])
-            ->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'province', $this->province]);
+        // $query->andFilterWhere(['like', 'customer_name', $this->customer_name])
+        //     ->andFilterWhere(['like', 'zip_code', $this->zip_code])
+        //     ->andFilterWhere(['like', 'city', $this->city])
+        //     ->andFilterWhere(['like', 'province', $this->province]);
+        
+        $query->orFilterWhere(['like', 'customer_name', $this->globalSearch])
+            ->orFilterWhere(['like', 'zip_code', $this->globalSearch])
+            ->orFilterWhere(['like', 'city', $this->globalSearch])
+            ->orFilterWhere(['like', 'province', $this->globalSearch]);
 
         return $dataProvider;
     }

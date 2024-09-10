@@ -12,7 +12,8 @@ use yii\widgets\ActiveForm;
 
 <?php $form = ActiveForm::begin([
         'options' => [
-            'id' => 'create-book-form'
+            'id' => 'create-book-form',
+            ['enctype' => 'multipart/form-data']
         ]
     ]); ?>
 
@@ -22,8 +23,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'book_price')->textInput() ?>
 
+    <?= $form->field($model, 'file')->fileInput() ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class'=>'btn btn-warning']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

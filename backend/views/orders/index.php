@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use kartik\export\ExportMenu;
 use yii\helpers\Url;
 use yii\widgets\Pjax; // Ajax küldés
@@ -52,10 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'books_book_id'
         ];
 
-        echo ExportMenu::widget([
-            'dataProvider'=> $dataProvider,
-            'columns' => $gridColumns
-        ]);
+        // echo ExportMenu::widget([
+        //     'dataProvider'=> $dataProvider,
+        //     'columns' => $gridColumns
+        // ]);
     
     ?>
 

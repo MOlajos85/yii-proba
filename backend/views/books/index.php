@@ -24,9 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
+    <?php echo $this->renderAjax('_search', ['model' => $searchModel]);?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        // 'filterModel' => $searchModel,
         'columns' => [
 
             'book_author',

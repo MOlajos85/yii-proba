@@ -18,7 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <!-- <?= Html::a('Create Customers', ['create'], ['class' => 'btn btn-success']) ?> -->
         <?= Html::button('Create Customers', ['value' =>Url::to('index.php?r=customers/create'),
                                               'title' => 'Create Customer',
                                               'class' => 'showModalButton btn btn-success']) ?>
@@ -26,9 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]);?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        // 'filterModel' => $searchModel,
         'columns' => [
 
             'customer_name',

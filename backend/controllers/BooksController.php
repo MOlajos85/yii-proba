@@ -2,13 +2,14 @@
 
 namespace backend\controllers;
 
+use Exception;
 use Yii;
 use backend\models\Books;
 use backend\models\BooksSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\web\UploadedFile;
 /**
  * BooksController implements the CRUD actions for Books model.
  */
@@ -62,13 +63,53 @@ class BooksController extends Controller
     {
         $model = new Books();
 
+        // if ($model->load(Yii::$app->request->post())) {
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+          // Fájl példányának mentése a megadott könyvtárba, szerző - cím néven
+            $imageName = $model->book_author.' - '.$model->book_title;
+            $model->file = UploadedFile::getInstance($model,'file');
+            $model->file->saveAs('uploads/books'.$imageName.'.'.$model->file->extension);
+
+            // Elérési út mentése az adatbázisba
+            $model->book_img = 'uploads/books'.$imageName.'.'.$model->file->extension;
+
             return $this->redirect(['view', 'id' => $model->book_id]);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
+    }
+    
+    // Excel fájl importálása
+    public function actionImportExcel()
+    {
+      $inputFile = 'uploads/books.xlsx';
+
+      try {
+
+        $inputFileType = \PHPExcel_IOFactory::identify($inputFile);
+        $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
+        $objPHPExcel = $objReader->load($inputFile);
+
+      } catch (Exception $e) {
+
+        die('Error');
+
+      }
+
+      $sheet = $objPHPExcel->getSheet(0);
+      $highestRow = $sheet->getHighestRow();
+      $highestColumn = $sheet->getHighestColumn();
+
+      for ($row = 1; $row < $highestRow ; $row++) { 
+        $rowData = $sheet->rangeToArray('A'. $row.':'.$highestColumn.$row,NULL,TRUE,FALSE);
+
+        if ($row == 1 ) {
+          continue;
+        }
+      }
     }
 
     /**

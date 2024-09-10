@@ -19,6 +19,7 @@ class Books extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $file;
     public static function tableName()
     {
         return 'books';
@@ -32,7 +33,9 @@ class Books extends \yii\db\ActiveRecord
         return [
             [['book_author', 'book_title', 'book_price'], 'required'],
             [['book_price'], 'integer'],
-            [['book_author', 'book_title'], 'string', 'max' => 100]
+            [['file'],'file'],
+            [['book_author', 'book_title'], 'string', 'max' => 100],
+            [['book_img'], 'string', 'max' => 255]
         ];
     }
 
@@ -46,6 +49,7 @@ class Books extends \yii\db\ActiveRecord
             'book_author' => 'Author',
             'book_title' => 'Title',
             'book_price' => 'Price',
+            'file' => 'Book Cover',
         ];
     }
 
