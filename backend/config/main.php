@@ -14,6 +14,7 @@ return [
     'modules' => [
         'gridview' => [
             'class' => 'kartik\grid\Module',
+            'downloadAction' => 'gridview/export/download',
             // other module settings
         ],
         'exportMenu' => [
