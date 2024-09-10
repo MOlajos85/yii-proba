@@ -19,7 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <!-- <?= Html::a('Create Customers', ['create'], ['class' => 'btn btn-success']) ?> -->
-        <?= Html::button('Create Customers', ['value' =>Url::to('index.php?r=customers/create'), 'title' => 'Create Customer', 'class' => 'showModalButton btn btn-success']) ?>
+        <?= Html::button('Create Customers', ['value' =>Url::to('index.php?r=customers/create'),
+                                              'title' => 'Create Customer',
+                                              'class' => 'showModalButton btn btn-success']) ?>
 
     </p>
 

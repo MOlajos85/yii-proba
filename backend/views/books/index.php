@@ -18,9 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <!-- <?= Html::a('Create Books', ['create'], ['class' => 'btn btn-success']) ?> -->
-        <?= Html::button('Create Books', ['value' =>Url::to('index.php?r=books/create'), 'title' => 'Create Book', 'class' => 'showModalButton btn btn-success']) ?>
-
+        <?= Html::button('Create Books', ['value' =>Url::to('index.php?r=books/create'), 
+                                          'title' => 'Create Book',
+                                          'class' => 'showModalButton btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>

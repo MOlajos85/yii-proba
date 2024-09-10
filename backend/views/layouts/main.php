@@ -61,6 +61,7 @@ AppAsset::register($this);
             <?= $content ?>
 
             <?php
+            // Modal a felugró ablakhoz
                 Modal::begin([
                     // 'headerOptions' => ['id' => 'modalHeader'],
                     'id' => 'modal',
@@ -74,8 +75,6 @@ AppAsset::register($this);
             ?>
         </div>
     </div>
-
-
 
     <footer class="footer">
         <div class="container">

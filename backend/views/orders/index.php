@@ -25,8 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <!-- <?= Html::button('Create Orders', ['value' =>Url::to('index.php?r=orders/create'), 'class' => 'btn btn-success', 'id' => 'ordersModalButton']) ?> -->
-        <?= Html::button('Create Orders', ['value' =>Url::to('index.php?r=orders/create'), 'title' => 'Create Order', 'class' => 'showModalButton btn btn-success']) ?>
+        <?= Html::button('Create Orders', ['value' =>Url::to('index.php?r=orders/create'),
+                                           'title' => 'Create Order',
+                                           'class' => 'showModalButton btn btn-success']) ?>
     </p>
 
     <!-- <?php
@@ -51,10 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'books_book_id'
         ];
 
-        // echo ExportMenu::widget([
-        //     'dataProvider'=> $dataProvider,
-        //     'columns' => $gridColumns
-        // ]);
+        echo ExportMenu::widget([
+            'dataProvider'=> $dataProvider,
+            'columns' => $gridColumns
+        ]);
     
     ?>
 
