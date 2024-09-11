@@ -22,22 +22,4 @@ $this->title = 'My Yii Application';
             </div>
         </div>
     </div>
-
-    <div class="body-content">
-
-    
-
-        <!-- <div class="row">
-            <div class="col-lg-4">
-                <a href="http://localhost/proba/backend/web/index.php?r=books" class="btn btn-info btn-lg" role="button">Könyvek</a>
-              </div>
-              <div class="col-lg-4">
-                <a href="http://localhost/proba/backend/web/index.php?r=customers" class="btn btn-info btn-lg" role="button">Vásárlók</a>
-              </div>
-              <div class="col-lg-4">
-                <a href="http://localhost/proba/backend/web/index.php?r=orders" class="btn btn-info btn-lg" role="button">Rendelések</a>
-            </div>
-        </div> -->
-
-    </div>
 </div>

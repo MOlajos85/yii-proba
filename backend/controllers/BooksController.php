@@ -8,6 +8,7 @@ use backend\models\Books;
 use backend\models\BooksSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
@@ -43,13 +44,14 @@ class BooksController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new BooksSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+      $searchModel = new BooksSearch();
+      $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+      return $this->render('index', [
+          'searchModel' => $searchModel,
+          'dataProvider' => $dataProvider,
+      ]);
+      
     }
 
     /**
@@ -71,24 +73,31 @@ class BooksController extends Controller
      */
     public function actionCreate()
     {
+      if(Yii::$app->user->can('create-book'))
+      {
+        
         $model = new Books();
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
+          
           // Fájl példányának mentése a megadott könyvtárba, szerző - cím néven
-            $imageName = $model->book_author.' - '.$model->book_title;
-            $model->file = UploadedFile::getInstance($model,'file');
-            $model->file->saveAs('uploads/books'.$imageName.'.'.$model->file->extension);
-
-            // Elérési út mentése az adatbázisba
-            $model->book_img = 'uploads/books'.$imageName.'.'.$model->file->extension;
-
-            return $this->redirect(['view', 'id' => $model->book_id]);
+          $imageName = $model->book_author.' - '.$model->book_title;
+          $model->file = UploadedFile::getInstance($model,'file');
+          $model->file->saveAs('uploads/books'.$imageName.'.'.$model->file->extension);
+          
+          // Elérési út mentése az adatbázisba
+          $model->book_img = 'uploads/books'.$imageName.'.'.$model->file->extension;
+          
+          return $this->redirect(['view', 'id' => $model->book_id]);
         } else {
-            return $this->renderAjax('create', [
-                'model' => $model,
-            ]);
+          return $this->renderAjax('create', [
+            'model' => $model,
+          ]);
         }
+      } else {
+        echo 'Nem vagy jogosult új könyvet felvenni!';
+        // throw new ForbiddenHttpException();
+      }
     }
     
     // Excel fájl importálása

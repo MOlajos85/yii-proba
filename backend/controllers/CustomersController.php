@@ -7,6 +7,7 @@ use backend\models\Customers;
 use backend\models\CustomersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
@@ -70,6 +71,8 @@ class CustomersController extends Controller
      */
     public function actionCreate()
     {
+      if(Yii::$app->user->can('create-customer'))
+      {
         $model = new Customers();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -79,6 +82,10 @@ class CustomersController extends Controller
                 'model' => $model,
             ]);
         }
+      } else {
+        echo 'Nem vagy jogosult új vásárlót felvenni!';
+        // throw new ForbiddenHttpException('Nem vagy jogosult új vásárlót felvenni!');
+      }
     }
 
     /**

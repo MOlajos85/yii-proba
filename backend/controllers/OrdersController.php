@@ -7,6 +7,7 @@ use backend\models\Orders;
 use backend\models\OrdersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
@@ -42,6 +43,8 @@ class OrdersController extends Controller
      */
     public function actionIndex()
     {
+      
+      
         $searchModel = new OrdersSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -49,6 +52,7 @@ class OrdersController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+      
     }
 
     /**
@@ -70,6 +74,7 @@ class OrdersController extends Controller
      */
     public function actionCreate()
     {
+      if(Yii::$app->user->can('create-order')) {
         $model = new Orders();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -79,6 +84,10 @@ class OrdersController extends Controller
                 'model' => $model,
             ]);
         }
+      } else {
+        echo 'Nem vagy jogosult új megrendelést felvenni!';
+        // throw new ForbiddenHttpException();
+      }
     }
 
     /**
