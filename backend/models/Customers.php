@@ -60,9 +60,4 @@ class Customers extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Orders::className(), ['customers_customer_id' => 'customer_id']);
     }
-
-    // public function getBooks() {
-    //     return $this->hasMany(Books::className(), ['customer_id' => 'books_book_id'])
-    //         ->viaTable('orders', ['customers_customer_id' => 'customer_id']);
-    // }
 }

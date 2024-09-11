@@ -63,7 +63,6 @@ class BooksController extends Controller
     {
         $model = new Books();
 
-        // if ($model->load(Yii::$app->request->post())) {
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
           // Fájl példányának mentése a megadott könyvtárba, szerző - cím néven

@@ -15,13 +15,15 @@ class OrdersSearch extends Orders
     /**
      * @inheritdoc
      */
+
+     public $globalSearch;
     // Mezőkre vonatkozó megkötések
      public function rules()
     {
         return [
             // order_id-t integerként kezeli, a másik 2-t stringként
             [['order_id'], 'integer'],
-            [['customers_customer_id', 'books_book_id'], 'safe']
+            [['customers_customer_id', 'globalSearch', 'books_book_id'], 'safe']
         ];
     }
 
@@ -80,14 +82,12 @@ class OrdersSearch extends Orders
         // Integer típus esetén, ahol pontos egyezés kell
         $query->andFilterWhere([
             'order_id' => $this->order_id,
-            // 'customers_customer_id' => $this->customers_customer_id,
-            // 'books_book_id' => $this->books_book_id,
         ]);
 
         // Stringeknél ('like')
         // A megadott id (pl. books_book_id) alapján keressen egyezést a csatolt táblában (pl. könyv címe alapján)
-        $query->andFilterWhere(['like','customers.customer_name', $this->customers_customer_id])
-                ->andFilterWhere(['like','books.book_title', $this->books_book_id]);
+        $query->orFilterWhere(['like','customers.customer_name', $this->globalSearch])
+                ->orFilterWhere(['like','books.book_title', $this->globalSearch]);
 
         return $dataProvider;
     }

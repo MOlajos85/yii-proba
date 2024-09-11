@@ -51,15 +51,6 @@ class CustomersSearch extends Customers
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-
-        // $query->andFilterWhere([
-        //     'customer_id' => $this->customer_id,
-        // ]);
-
-        // $query->andFilterWhere(['like', 'customer_name', $this->customer_name])
-        //     ->andFilterWhere(['like', 'zip_code', $this->zip_code])
-        //     ->andFilterWhere(['like', 'city', $this->city])
-        //     ->andFilterWhere(['like', 'province', $this->province]);
         
         $query->orFilterWhere(['like', 'customer_name', $this->globalSearch])
             ->orFilterWhere(['like', 'zip_code', $this->globalSearch])

@@ -15,8 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="books-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
         <?= Html::button('Create Books', ['value' =>Url::to('index.php?r=books/create'), 
                                           'title' => 'Create Book',
@@ -27,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php echo $this->renderAjax('_search', ['model' => $searchModel]);?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        // 'filterModel' => $searchModel,
         'columns' => [
 
             'book_author',

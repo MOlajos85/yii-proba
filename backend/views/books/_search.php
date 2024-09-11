@@ -17,14 +17,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'globalSearch') ?>
 
-    <!-- <?= $form->field($model, 'book_id') ?>
-    
-    <?= $form->field($model, 'book_author') ?>
-
-    <?= $form->field($model, 'book_title') ?>
-
-    <?= $form->field($model, 'book_price') ?> -->
-
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

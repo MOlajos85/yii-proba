@@ -22,8 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="orders-index"> 
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
         <?= Html::button('Create Orders', ['value' =>Url::to('index.php?r=orders/create'),
                                            'title' => 'Create Order',
@@ -62,9 +60,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- Keresés Ajax-szel, az oldal újratöltése nélkül -->
      <!-- Pjax widget, kezdés: begin(), zárás: end() -->
     <?php Pjax::begin(); ?>
+    <?php echo $this->renderAjax('_search', ['model' => $searchModel]);?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
 
         // A táblázatos lista a 'columns'-ben szerepel
         'columns' => [

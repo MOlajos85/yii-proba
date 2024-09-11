@@ -15,14 +15,13 @@ class BooksSearch extends Books
     /**
      * @inheritdoc
      */
-    public $customer_name;
+    // public $customer_name;
     public $globalSearch;
     public function rules()
     {
         return [
             [['book_id', 'book_price'], 'integer'],
             [['book_author', 'globalSearch', 'book_title'], 'safe'],
-            // [['book_author', 'globalSearch', 'customer_name', 'book_title'], 'safe'],
         ];
     }
 
@@ -45,7 +44,6 @@ class BooksSearch extends Books
     public function search($params)
     {
         $query = Books::find();
-        // $query = Books::find()->innerJoinWith('customers', true);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,15 +52,6 @@ class BooksSearch extends Books
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-
-        // $query->andFilterWhere([
-        //     'book_id' => $this->book_id,
-        //     'book_price' => $this->book_price,
-        // ]);
-
-        // $query->andFilterWhere(['like', 'book_author', $this->book_author])
-        //     ->andFilterWhere(['like', 'book_title', $this->book_title])
-        //     ->andFilterWhere(['like', 'customer_name', $this->customer_name]);
         
         $query->orFilterWhere(['like', 'book_author', $this->globalSearch])
             ->orFilterWhere(['like', 'book_title', $this->globalSearch])

@@ -15,8 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="customers-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
         <?= Html::button('Create Customers', ['value' =>Url::to('index.php?r=customers/create'),
                                               'title' => 'Create Customer',
@@ -28,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php echo $this->render('_search', ['model' => $searchModel]);?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        // 'filterModel' => $searchModel,
         'columns' => [
 
             'customer_name',
