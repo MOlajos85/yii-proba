@@ -22,14 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
               'class' => 'showModalButton btn btn-success']);
             } 
     ?>
-    <!-- <p>
-        <?= Html::button('Create Books', ['value' =>Url::to('index.php?r=books/create'), 
-                                          'title' => 'Create Book',
-                                          'class' => 'showModalButton btn btn-success']) ?>
-    </p> -->
 
     <?php Pjax::begin(); ?>
+
     <?php echo $this->renderAjax('_search', ['model' => $searchModel]);?>
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [

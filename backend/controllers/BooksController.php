@@ -83,10 +83,11 @@ class BooksController extends Controller
           // Fájl példányának mentése a megadott könyvtárba, szerző - cím néven
           $imageName = $model->book_author.' - '.$model->book_title;
           $model->file = UploadedFile::getInstance($model,'file');
-          $model->file->saveAs('uploads/books'.$imageName.'.'.$model->file->extension);
+          $model->file->saveAs('uploads/books/'.$imageName.'.'.$model->file->extension);
           
           // Elérési út mentése az adatbázisba
-          $model->book_img = 'uploads/books'.$imageName.'.'.$model->file->extension;
+          $model->book_img = 'uploads/books/'.$imageName.'.'.$model->file->extension;
+          $model->save();
           
           return $this->redirect(['view', 'id' => $model->book_id]);
         } else {
@@ -97,36 +98,6 @@ class BooksController extends Controller
       } else {
         echo 'Nem vagy jogosult új könyvet felvenni!';
         // throw new ForbiddenHttpException();
-      }
-    }
-    
-    // Excel fájl importálása
-    public function actionImportExcel()
-    {
-      $inputFile = 'uploads/books.xlsx';
-
-      try {
-
-        $inputFileType = \PHPExcel_IOFactory::identify($inputFile);
-        $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
-        $objPHPExcel = $objReader->load($inputFile);
-
-      } catch (Exception $e) {
-
-        die('Error');
-
-      }
-
-      $sheet = $objPHPExcel->getSheet(0);
-      $highestRow = $sheet->getHighestRow();
-      $highestColumn = $sheet->getHighestColumn();
-
-      for ($row = 1; $row < $highestRow ; $row++) { 
-        $rowData = $sheet->rangeToArray('A'. $row.':'.$highestColumn.$row,NULL,TRUE,FALSE);
-
-        if ($row == 1 ) {
-          continue;
-        }
       }
     }
 

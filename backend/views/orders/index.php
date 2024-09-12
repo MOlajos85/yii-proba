@@ -66,7 +66,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- Keresés Ajax-szel, az oldal újratöltése nélkül -->
      <!-- Pjax widget, kezdés: begin(), zárás: end() -->
     <?php Pjax::begin(); ?>
+
+    <!-- ¨Globális keresés mező -->
     <?php echo $this->renderAjax('_search', ['model' => $searchModel]);?>
+
+    <!-- Felvett rendelések -->
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
 
