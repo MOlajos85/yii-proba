@@ -15,12 +15,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="customers-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <p>
-        <?= Html::button('Create Customers', ['value' =>Url::to('index.php?r=customers/create'),
-                                              'title' => 'Create Customer',
-                                              'class' => 'showModalButton btn btn-success']) ?>
 
-    </p>
+    <?php if (Yii::$app->user->can('create-customer')) {
+              echo Html::button('Create Customers', ['value' =>Url::to('index.php?r=customers/create'), 
+              'title' => 'Create Customer',
+              'class' => 'showModalButton btn btn-success']);
+            } 
+    ?>
 
     <?php Pjax::begin(); ?>
     <?php echo $this->render('_search', ['model' => $searchModel]);?>

@@ -32,21 +32,20 @@ AppAsset::register($this);
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
-            $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'Books', 'url' => ['/books/index']],
-                ['label' => 'Customers', 'url' => ['/customers/index']],
-                ['label' => 'Orders', 'url' => ['/orders/index']],
-            ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
+                $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
+                $menuItems[] = ['label' => 'Books', 'url' => ['/books/index']];
+                $menuItems[] = ['label' => 'Customers', 'url' => ['/customers/index']];
+                $menuItems[] = ['label' => 'Orders', 'url' => ['/orders/index']];
                 $menuItems[] = [
                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
             }
+            
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,
@@ -55,9 +54,9 @@ AppAsset::register($this);
         ?>
 
         <div class="container">
-            <?= Breadcrumbs::widget([
+            <!-- <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
+            ]) ?> -->
             <?= $content ?>
 
             <?php

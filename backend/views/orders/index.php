@@ -22,11 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="orders-index"> 
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <p>
-        <?= Html::button('Create Orders', ['value' =>Url::to('index.php?r=orders/create'),
-                                           'title' => 'Create Order',
-                                           'class' => 'showModalButton btn btn-success']) ?>
-    </p>
+
+    <!-- A Create Order gomb csak azoknál a felhasználóknál jelenik meg, akiknek van joguk rendelést létrehozni -->
+    <?php if (Yii::$app->user->can('create-order')) {
+              echo Html::button('Create Orders', ['value' =>Url::to('index.php?r=orders/create'), 
+              'title' => 'Create Order',
+              'class' => 'showModalButton btn btn-success']);
+            } 
+    ?>
 
     <!-- <?php
         // Felugró űrlap ablak

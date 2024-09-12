@@ -15,11 +15,18 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="books-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <p>
+    
+    <?php if (Yii::$app->user->can('create-book')) {
+              echo Html::button('Create Books', ['value' =>Url::to('index.php?r=books/create'), 
+              'title' => 'Create Book',
+              'class' => 'showModalButton btn btn-success']);
+            } 
+    ?>
+    <!-- <p>
         <?= Html::button('Create Books', ['value' =>Url::to('index.php?r=books/create'), 
                                           'title' => 'Create Book',
                                           'class' => 'showModalButton btn btn-success']) ?>
-    </p>
+    </p> -->
 
     <?php Pjax::begin(); ?>
     <?php echo $this->renderAjax('_search', ['model' => $searchModel]);?>
