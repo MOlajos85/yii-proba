@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use kartik\export\ExportMenu;
+use kartik\base\TranslationTrait;
 use yii\helpers\Url;
 use yii\widgets\Pjax; // Ajax küldés
 use yii\bootstrap\Modal; // Felugró ablak az űrlap kitöltéséhez
@@ -49,14 +50,16 @@ $this->params['breadcrumbs'][] = $this->title;
     
         $gridColumns = [
             'customersCustomer.customer_name',
-            'orders_order_id',
-            'books_book_id'
+            'booksBook.book_title',
+            'booksBook.book_author'
+            // 'orders_order_id',
+            // 'books_book_id'
         ];
 
-        // echo ExportMenu::widget([
-        //     'dataProvider'=> $dataProvider,
-        //     'columns' => $gridColumns
-        // ]);
+        echo ExportMenu::widget([
+            'dataProvider'=> $dataProvider,
+            'columns' => $gridColumns
+        ]);
     
     ?>
 
