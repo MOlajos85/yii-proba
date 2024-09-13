@@ -76,7 +76,7 @@ class CustomersController extends Controller
         $model = new Customers();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->customer_id]);
+            return $this->redirect(['index', 'id' => $model->customer_id]);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
@@ -99,7 +99,7 @@ class CustomersController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->customer_id]);
+            return $this->redirect(['index', 'id' => $model->customer_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,

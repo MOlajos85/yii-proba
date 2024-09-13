@@ -89,7 +89,7 @@ class BooksController extends Controller
           $model->book_img = 'uploads/books/'.$imageName.'.'.$model->file->extension;
           $model->save();
           
-          return $this->redirect(['view', 'id' => $model->book_id]);
+          return $this->redirect(['index', 'id' => $model->book_id]);
         } else {
           return $this->renderAjax('create', [
             'model' => $model,
@@ -112,7 +112,7 @@ class BooksController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->book_id]);
+            return $this->redirect(['index', 'id' => $model->book_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,

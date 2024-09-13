@@ -10,6 +10,7 @@ use Yii;
  * @property integer $book_id
  * @property string $book_author
  * @property string $book_title
+ * @property string $book_img
  * @property integer $book_price
  *
  * @property Orders[] $orders
@@ -53,6 +54,7 @@ class Books extends \yii\db\ActiveRecord
         ];
     }
 
+    
     /**
      * @return \yii\db\ActiveQuery
      */

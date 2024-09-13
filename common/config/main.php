@@ -12,4 +12,13 @@ return [
             // 'cache' => 'cache',
         ],
     ],
+//     'user' => [
+//     'enableAutoLogin' => false,
+//     'authTimeout' => 30,
+// ],
+// 'session' => [
+
+//         'timeout' => 30,
+
+//     ],
 ];

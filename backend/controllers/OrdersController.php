@@ -78,7 +78,7 @@ class OrdersController extends Controller
         $model = new Orders();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->order_id]);
+            return $this->redirect(['index', 'id' => $model->order_id]);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
@@ -101,7 +101,7 @@ class OrdersController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->order_id]);
+            return $this->redirect(['index', 'id' => $model->order_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
