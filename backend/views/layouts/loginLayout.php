@@ -20,28 +20,14 @@ LoginAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body class="login-page">
     <?php $this->beginBody() ?>
     <div class="wrap">
-        
 
         <div class="container">
             
             <?= $content ?>
 
-            <?php
-            // Modal a felugró ablakhoz
-                Modal::begin([
-                    'headerOptions' => ['id' => 'modalHeader'],
-                    'id' => 'modal',
-                    'size' => 'modal-lg',
-                    //keeps from closing modal with esc key or by clicking out of the modal.
-                    // user must click cancel or X to close
-                    // 'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
-                ]);
-                echo "<div id='modalContent'></div>";
-                Modal::end();
-            ?>
         </div>
     </div>
 

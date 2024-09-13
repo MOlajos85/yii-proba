@@ -10,7 +10,9 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Books';
+
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="books-index">
 
@@ -20,7 +22,15 @@ $this->params['breadcrumbs'][] = $this->title;
               echo Html::button('Create Books', ['value' =>Url::to('index.php?r=books/create'), 
               'title' => 'Create Book',
               'class' => 'showModalButton btn btn-success']);
-            } 
+            }
+            else 
+            {
+              echo Html::button('Create Books', ['value' =>Url::to('index.php?r=books/create'), 
+              'title' => 'Create Book',
+              'class' => 'showModalButton btn btn-success',
+              'disabled' => 'disabled'
+            ]);
+            }
     ?>
 
     <?php Pjax::begin(); ?>

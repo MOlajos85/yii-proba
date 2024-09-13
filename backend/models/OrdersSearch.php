@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Orders;
+use yii\data\SqlDataProvider;
 
 /**
  * OrdersSearch represents the model behind the search form about `backend\models\Orders`.

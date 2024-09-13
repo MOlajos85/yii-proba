@@ -20,7 +20,14 @@ $this->params['breadcrumbs'][] = $this->title;
               echo Html::button('Create Customers', ['value' =>Url::to('index.php?r=customers/create'), 
               'title' => 'Create Customer',
               'class' => 'showModalButton btn btn-success']);
-            } 
+            }
+            else {
+              echo Html::button('Create Customers', ['value' =>Url::to('index.php?r=customers/create'), 
+              'title' => 'Create Customer',
+              'class' => 'showModalButton btn btn-success',
+              'disabled' => 'disabled'
+              ]);
+            }
     ?>
 
     <?php Pjax::begin(); ?>

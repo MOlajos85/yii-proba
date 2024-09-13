@@ -15,6 +15,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
+    <!-- Az eredeti mezőket töröltük, helyettük van a globális keresés -->
     <?= $form->field($model, 'globalSearch') ?>
 
     <div class="form-group">

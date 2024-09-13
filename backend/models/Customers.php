@@ -45,17 +45,18 @@ class Customers extends \yii\db\ActiveRecord
      public function attributeLabels()
     {
         return [
-            'customer_id' => 'Customer ID',
-            'customer_name' => 'Customer Name',
-            'zip_code' => 'Zip Code',
-            'city' => 'City',
-            'province' => 'Province',
+            'customer_id' => 'Vásárlói azonosító',
+            'customer_name' => 'Vásárló neve',
+            'zip_code' => 'Irányítószám',
+            'city' => 'Település',
+            'province' => 'Megye',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
+    // Összekapcsolás az Orders kapcsolótáblával; customers->customer_id mező kapcsolása orders->books_book_id mezőhöz
     public function getOrders()
     {
         return $this->hasMany(Orders::className(), ['customers_customer_id' => 'customer_id']);

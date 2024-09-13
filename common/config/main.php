@@ -6,6 +6,7 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'authManager' => [
+            // DbManager RBAC használatához
             'class' => 'yii\rbac\DbManager',
             'defaultRoles' => ['guest']
             // uncomment if you want to cache RBAC items hierarchy

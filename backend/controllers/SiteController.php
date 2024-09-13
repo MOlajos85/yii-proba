@@ -61,8 +61,10 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-      // Más layout betöltése a bejelentkezési képernyőhöz
-      $this->layout = 'loginLayout';
+        // Más layout betöltése a bejelentkezési képernyőhöz
+        $this->layout = 'loginLayout';
+        
+        // Ha nem vendég a felhasználó, akkor egyből a főoldalra kerül
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }

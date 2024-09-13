@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\data\Pagination;
 
 /**
  * OrdersController implements the CRUD actions for Orders model.
@@ -42,9 +43,8 @@ class OrdersController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
-      
-      
+    {   
+        
         $searchModel = new OrdersSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

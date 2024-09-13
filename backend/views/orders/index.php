@@ -30,30 +30,23 @@ $this->params['breadcrumbs'][] = $this->title;
               'title' => 'Create Order',
               'class' => 'showModalButton btn btn-success']);
             } 
+            else 
+            {
+              echo Html::button('Create Orders', ['value' =>Url::to('index.php?r=orders/create'), 
+              'title' => 'Create Order',
+              'class' => 'showModalButton btn btn-success',
+              'disabled' => 'disabled',
+            ]);
+            } 
     ?>
 
-    <!-- <?php
-        // Felugró űrlap ablak
-        Modal::begin([
-            'header' => '<h4>Orders</h4>',
-            'id' => 'ordersModal',
-            'size' => 'modal-lg',
-        ]);
-
-        echo "<div id='ordersModalContent'></div>";
-
-        Modal::end();
-    ?> -->
-
-    <!-- ExportMenu - MEGNÉZNI!!! -->
+    <!-- Rendelések exportálása excelbe -->
     <?php 
     
         $gridColumns = [
             'customersCustomer.customer_name',
             'booksBook.book_title',
             'booksBook.book_author'
-            // 'orders_order_id',
-            // 'books_book_id'
         ];
 
         echo ExportMenu::widget([

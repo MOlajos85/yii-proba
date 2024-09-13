@@ -47,6 +47,7 @@ class BooksController extends Controller
       $searchModel = new BooksSearch();
       $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+      // Betölti a könyvek főoldalát
       return $this->render('index', [
           'searchModel' => $searchModel,
           'dataProvider' => $dataProvider,
@@ -61,6 +62,7 @@ class BooksController extends Controller
      */
     public function actionView($id)
     {
+      // Betölti az adott könyv nézetét
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -89,6 +91,7 @@ class BooksController extends Controller
           $model->book_img = 'uploads/books/'.$imageName.'.'.$model->file->extension;
           $model->save();
           
+          // Visszatérés a könyvek főoldalára
           return $this->redirect(['index', 'id' => $model->book_id]);
         } else {
           return $this->renderAjax('create', [
@@ -97,7 +100,6 @@ class BooksController extends Controller
         }
       } else {
         echo 'Nem vagy jogosult új könyvet felvenni!';
-        // throw new ForbiddenHttpException();
       }
     }
 

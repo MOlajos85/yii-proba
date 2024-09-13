@@ -16,7 +16,11 @@ class BooksSearch extends Books
      * @inheritdoc
      */
     // public $customer_name;
+    
+    // Változó a globális keresés megvalósításához
     public $globalSearch;
+
+    // Szabályok
     public function rules()
     {
         return [
@@ -41,6 +45,8 @@ class BooksSearch extends Books
      *
      * @return ActiveDataProvider
      */
+
+    // Keresés megvalósítása
     public function search($params)
     {
         $query = Books::find();
@@ -53,6 +59,7 @@ class BooksSearch extends Books
             return $dataProvider;
         }
         
+        // a globalSearch alapján keres egyezést a cím, a szerző vagy az ár alapján
         $query->orFilterWhere(['like', 'book_author', $this->globalSearch])
             ->orFilterWhere(['like', 'book_title', $this->globalSearch])
             ->orFilterWhere(['like', 'book_price', $this->globalSearch]);

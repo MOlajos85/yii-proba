@@ -43,16 +43,18 @@ class Orders extends \yii\db\ActiveRecord
      public function attributeLabels()
     {
         return [
-            'order_id' => 'Order ID',
-            'customers_customer_id' => 'Customer Name',
-            'books_book_id' => 'Book',
+            'order_id' => 'Rendelés azonosítója',
+            'customers_customer_id' => 'Vásárló neve', // idegen kulcs kapcsolat a Customers táblával
+            'books_book_id' => 'Könyv címe', // idegen kulcs kapcsolat a Books táblával
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCustomersCustomer()
+
+    // Kapcsolat az Orders és a Customers tábla között
+     public function getCustomersCustomer()
     {
         return $this->hasOne(Customers::className(), ['customer_id' => 'customers_customer_id']);
     }
@@ -60,6 +62,8 @@ class Orders extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+
+    // Kapcsolat az Orders és a Books tábla között
     public function getBooksBook()
     {
         return $this->hasOne(Books::className(), ['book_id' => 'books_book_id']);

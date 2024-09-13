@@ -13,6 +13,7 @@ return [
     'bootstrap' => ['log'],
     'modules' => [
         'gridview' => [
+          // Kartik excel exporthoz kellenek
             'class' => 'kartik\grid\Module',
             'downloadAction' => 'gridview/export/download',
             // other module settings

@@ -40,6 +40,8 @@ class CustomersSearch extends Customers
      *
      * @return ActiveDataProvider
      */
+
+    // Keresés megvalósítása
     public function search($params)
     {
         $query = Customers::find();
@@ -52,6 +54,7 @@ class CustomersSearch extends Customers
             return $dataProvider;
         }
         
+        // a globalSearch alapján keres egyezést a cím, a szerző vagy az ár alapján
         $query->orFilterWhere(['like', 'customer_name', $this->globalSearch])
             ->orFilterWhere(['like', 'zip_code', $this->globalSearch])
             ->orFilterWhere(['like', 'city', $this->globalSearch])

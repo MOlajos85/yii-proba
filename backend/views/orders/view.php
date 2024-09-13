@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Orders */
 
-$this->title = $model->order_id;
+$this->title = 'Rendelés száma: '.$model->order_id;
 $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -17,9 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'order_id',
-            'customers_customer_id',
-            'books_book_id',
+            'customersCustomer.customer_name',
+            'booksBook.book_title'
         ],
     ]) ?>
 

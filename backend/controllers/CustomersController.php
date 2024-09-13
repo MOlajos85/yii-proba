@@ -84,7 +84,6 @@ class CustomersController extends Controller
         }
       } else {
         echo 'Nem vagy jogosult új vásárlót felvenni!';
-        // throw new ForbiddenHttpException('Nem vagy jogosult új vásárlót felvenni!');
       }
     }
 

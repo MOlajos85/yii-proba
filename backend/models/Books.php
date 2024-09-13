@@ -20,7 +20,8 @@ class Books extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public $file;
+    // Változó a feltötött fájlok tárolásához
+     public $file;
     public static function tableName()
     {
         return 'books';
@@ -29,12 +30,14 @@ class Books extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    // Mezőkre vonatkozó szabályok
     public function rules()
     {
         return [
             [['book_author', 'book_title', 'book_price'], 'required'],
             [['book_price'], 'integer'],
-            [['file'],'file'],
+            [['file'],'file'], // a file mező fájl típusú
             [['book_author', 'book_title'], 'string', 'max' => 100],
             [['book_img'], 'string', 'max' => 255]
         ];
@@ -43,28 +46,24 @@ class Books extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    // Az egyes mezők ilyen néven szerepelnek a nézetekben
+     public function attributeLabels()
     {
         return [
-            'book_id' => 'Book ID',
-            'book_author' => 'Author',
-            'book_title' => 'Title',
-            'book_price' => 'Price',
-            'file' => 'Book Cover',
+            'book_id' => 'Könyv azonnosítója',
+            'book_author' => 'Szerző',
+            'book_title' => ' Könyv címe',
+            'book_price' => 'Ár',
+            'file' => 'Borítókép',
         ];
     }
 
-    
     /**
      * @return \yii\db\ActiveQuery
      */
+    // Összekapcsolás az Orders kapcsolótáblával; books->book_id mező kapcsolása orders->books_book_id mezőhöz
     public function getOrders()
     {
         return $this->hasMany(Orders::className(), ['books_book_id' => 'book_id']);
     }
-
-    // public function getCustomers() {
-    //     return $this->hasMany(Customers::className(), ['book_id' => 'customers_customer_id'])
-    //         ->viaTable('orders', ['books_book_id' => 'book_id']);
-    // }
 }
