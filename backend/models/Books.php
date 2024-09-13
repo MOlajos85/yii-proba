@@ -50,7 +50,7 @@ class Books extends \yii\db\ActiveRecord
      public function attributeLabels()
     {
         return [
-            'book_id' => 'Könyv azonnosítója',
+            'book_id' => 'Könyv azonosítója',
             'book_author' => 'Szerző',
             'book_title' => ' Könyv címe',
             'book_price' => 'Ár',

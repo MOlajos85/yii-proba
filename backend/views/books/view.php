@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\Books */
 
 $this->title = $model->book_author.' - '. $model->book_title;
-$this->params['breadcrumbs'][] = ['label' => 'Books', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Könyvek', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="books-view">

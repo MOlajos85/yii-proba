@@ -25,7 +25,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'province')->textInput(['maxlength' => 100]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Létrehozás' : 'Frissítés', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Mégse'), ['index'], ['class'=>'btn btn-warning']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -8,7 +8,7 @@ use yii\widgets\Breadcrumbs;
 use yii\bootstrap\Modal;
 
 
-LoginAsset::register($this);
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -33,7 +33,7 @@ LoginAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Mini Könyvesbolt <?= date('Y') ?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>

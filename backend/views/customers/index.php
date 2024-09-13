@@ -9,7 +9,7 @@ use yii\helpers\Url;
 /* @var $searchModel backend\models\CustomersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Customers';
+$this->title = 'Vásárlók';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="customers-index">
@@ -17,13 +17,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->user->can('create-customer')) {
-              echo Html::button('Create Customers', ['value' =>Url::to('index.php?r=customers/create'), 
-              'title' => 'Create Customer',
+              echo Html::button('Új vásárló', ['value' =>Url::to('index.php?r=customers/create'), 
+              'title' => 'Új vásárló',
               'class' => 'showModalButton btn btn-success']);
             }
             else {
-              echo Html::button('Create Customers', ['value' =>Url::to('index.php?r=customers/create'), 
-              'title' => 'Create Customer',
+              echo Html::button('Új vásárló', ['value' =>Url::to('index.php?r=customers/create'), 
+              'title' => 'Új vásárló',
               'class' => 'showModalButton btn btn-success',
               'disabled' => 'disabled'
               ]);

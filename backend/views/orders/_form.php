@@ -21,17 +21,17 @@ use backend\models\Books;
 
     <?= $form->field($model, 'customers_customer_id')->dropDownList(
         ArrayHelper::map(Customers::find()->all(), 'customer_id', 'customer_name'),
-        ['prompt' => 'Select Customer']
+        ['prompt' => 'Vásárló neve']
     ) ?>
 
     <?= $form->field($model, 'books_book_id')->dropDownList(
         ArrayHelper::map(Books::find()->all(), 'book_id', 'book_title'),
-        ['prompt' => 'Select Book']
+        ['prompt' => 'Könyv címe']
     ) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class'=>'btn btn-warning']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Felvétel' : 'Frissítés', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Mégse'), ['index'], ['class'=>'btn btn-warning']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

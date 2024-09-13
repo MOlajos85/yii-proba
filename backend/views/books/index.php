@@ -9,7 +9,7 @@ use yii\helpers\Url;
 /* @var $searchModel backend\models\BooksSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Books';
+$this->title = 'Könyvek';
 
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -19,14 +19,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     
     <?php if (Yii::$app->user->can('create-book')) {
-              echo Html::button('Create Books', ['value' =>Url::to('index.php?r=books/create'), 
-              'title' => 'Create Book',
+              echo Html::button('Új könyv', ['value' =>Url::to('index.php?r=books/create'), 
+              'title' => 'Új könyv',
               'class' => 'showModalButton btn btn-success']);
             }
             else 
             {
-              echo Html::button('Create Books', ['value' =>Url::to('index.php?r=books/create'), 
-              'title' => 'Create Book',
+              echo Html::button('Új könyv', ['value' =>Url::to('index.php?r=books/create'), 
+              'title' => 'Új könyv',
               'class' => 'showModalButton btn btn-success',
               'disabled' => 'disabled'
             ]);

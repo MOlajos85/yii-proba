@@ -26,21 +26,24 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => 'Mini Könyvesbolt',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
-            if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-            } else {
-                $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
-                $menuItems[] = ['label' => 'Books', 'url' => ['/books/index']];
-                $menuItems[] = ['label' => 'Customers', 'url' => ['/customers/index']];
-                $menuItems[] = ['label' => 'Orders', 'url' => ['/orders/index']];
+            if (Yii::$app->user->isGuest) 
+            {
+                $menuItems[] = ['label' => 'Bejelentkezés', 'url' => ['/site/login']];
+            } 
+            else 
+            {
+                $menuItems[] = ['label' => 'Főoldal', 'url' => ['/site/index']];
+                $menuItems[] = ['label' => 'Könyvek', 'url' => ['/books/index']];
+                $menuItems[] = ['label' => 'Vásárlók', 'url' => ['/customers/index']];
+                $menuItems[] = ['label' => 'Rendelések', 'url' => ['/orders/index']];
                 $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'label' => 'Kijelentkezés (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
@@ -77,7 +80,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Mini Könyvesbolt <?= date('Y') ?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>

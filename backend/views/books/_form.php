@@ -26,8 +26,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'file')->fileInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?> 
-        <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class'=>'btn btn-warning']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Felvétel' : 'Frissítés', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?> 
+        <?= Html::a(Yii::t('app', 'Mégse'), ['index'], ['class'=>'btn btn-warning']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

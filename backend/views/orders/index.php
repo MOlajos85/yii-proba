@@ -13,7 +13,7 @@ use yii\bootstrap\Modal; // Felugró ablak az űrlap kitöltéséhez
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 // Oldal neve
-$this->title = 'Orders';
+$this->title = 'Rendelések';
 
 // Home - Orders sáv fenn
 $this->params['breadcrumbs'][] = $this->title;
@@ -26,14 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <!-- A Create Order gomb csak azoknál a felhasználóknál jelenik meg, akiknek van joguk rendelést létrehozni -->
     <?php if (Yii::$app->user->can('create-order')) {
-              echo Html::button('Create Orders', ['value' =>Url::to('index.php?r=orders/create'), 
-              'title' => 'Create Order',
+              echo Html::button('Új rendelés', ['value' =>Url::to('index.php?r=orders/create'), 
+              'title' => 'Új rendelés',
               'class' => 'showModalButton btn btn-success']);
             } 
             else 
             {
-              echo Html::button('Create Orders', ['value' =>Url::to('index.php?r=orders/create'), 
-              'title' => 'Create Order',
+              echo Html::button('Új rendelés', ['value' =>Url::to('index.php?r=orders/create'), 
+              'title' => 'Új rendelés',
               'class' => 'showModalButton btn btn-success',
               'disabled' => 'disabled',
             ]);

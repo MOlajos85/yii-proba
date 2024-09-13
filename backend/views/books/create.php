@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Books */
 
-$this->title = 'Create Books';
-$this->params['breadcrumbs'][] = ['label' => 'Books', 'url' => ['index']];
+$this->title = 'Új könyv felvétele';
+$this->params['breadcrumbs'][] = ['label' => 'Könyvek', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="books-create">
